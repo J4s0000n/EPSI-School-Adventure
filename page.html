@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page avec 3 blocs verticaux</title>
+    <link rel="stylesheet" href="page.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+    <link href="https://fonts.google.com/specimen/Poppins">
+</head>
+<body>
+<div>
+<nav>
+    <ul id="navbar">
+        <li><a href="page.html">Accueil</a></li>
+        <li><a href="team.html">Notre Equipe</a></li>
+        <li><a href="https://www.epsi.fr/">EPSI</a></li>
+    </ul>
+    <!-- Section des icônes séparées -->
+    <div class="nav-icons">
+        <a href=" https://www.instagram.com/elefaninteractive/" target="_blank">
+            <img src="Media/icons8-instagram-50.png" alt="Instagram" class="nav-icon">
+        </a>
+        <a href="https://www.tiktok.com/@elefaninteractive" target="_blank">
+            <img src="Media/icons8-tic-tac-50.png" alt="tik tok" class="nav-icon">
+        </a>
+        <a href="https://www.linkedin.com/company/elefan-interactive/" target="_blank">
+            <img src="Media/icons8-linkedin-50.png" alt="linkedin" class="nav-icon">
+        </a>
+        <a href="https://discord.gg/UxM2f952" target="_blank">
+            <img src="Media/icons8-discorde-50.png" alt="discorde" class="nav-icon">
+        </a>
+    </div>
+</nav>
+</div>
+<div class="container">
+
+    <!-- Premier bloc : Image statique -->
+    <div class="block block1">
+        <div class="logo-container">
+            <video src="Media/game_video.mp4" autoplay loop muted class="background-image"></video>
+            <img src="Media/logo_complet_jeu_workshop_TRANSPARENT.png" alt="Logo" class="logo">
+        </div>
+    </div>
+    <div>
+    <h1>Vivez la ferveur d’une rentrée en école d’informatique !</h1>
+        <p> Dans EPSI School Adventure, mettez-vous dans la peau d’un étudiant en première année d’études informatiques et découvrez un campus plein de vie !
+        Explorez les différents services de l’école grâce à une galerie de personnages hauts en couleur, et relevez les défis qui se dresseront sur votre chemin pour obtenir votre carte d’étudiant !</p>
+    </div>
+
+    <!-- Deuxième bloc : Carrousel avec flèches -->
+    <div class="block block2">
+
+        <div class="slideshow-container">
+            <img src="Media/capture2.png" alt="Image défilante 1">
+            <img src="Media/capture3.png" alt="Image défilante 2">
+            <img src="Media/capture4.png" alt="Image défilante 3">
+            <img src="Media/capture5.png" alt="Image défilante 3">
+            <img src="Media/capture6.png" alt="Image défilante 3">
+            <img src="Media/capture7.png" alt="Image défilante 3">
+            <img src="Media/capture8.png" alt="Image défilante 3">
+            <img src="Media/capture9.png" alt="Image défilante 3">
+            <img src="Media/capture1.png" alt="Image défilante 3">
+        </div>
+
+        <!-- Flèches de navigation -->
+        <div class="arrow left" onclick="moveSlide(-1)">&#10094;</div>
+        <div class="arrow right" onclick="moveSlide(1)">&#10095;</div>
+    </div>
+
+    <!-- Troisième bloc : Texte et bouton de téléchargement -->
+    <div class="block block3">
+    </div>
+    <div>
+        <h2>Télécharger le jeu </h2>
+        <p >Disponible sur</p>
+    </div>
+    <div class="image-container">
+        <img src="Media/icons8-windows-8-100.png">
+        <img src="Media/icons8-logo-mac-100.png">
+        <img src="Media/icons8-linux-100.png">
+    </div>
+    <div>
+            <a id="download-link" href="#" class="download-btn">Télécharger SuperGame</a>
+    </div>
+
+</div>
+<!--Pour le boutton telecharger-->
+<script>
+    // Détection du système d'exploitation de l'utilisateur
+    var os = navigator.platform.toLowerCase();
+    var downloadLink = document.getElementById('download-link');
+
+    if (os.indexOf('win') !== -1) {
+        downloadLink.href = "https://monserveur.com/supergame-windows.exe";
+        downloadLink.innerText = "Télécharger pour Windows";
+    } else if (os.indexOf('mac') !== -1) {
+        downloadLink.href = "https://monserveur.com/supergame-macos.dmg";
+        downloadLink.innerText = "Télécharger pour macOS";
+    } else if (os.indexOf('linux') !== -1) {
+        downloadLink.href = "https://monserveur.com/supergame-linux.tar.gz";
+        downloadLink.innerText = "Télécharger pour Linux";
+    } else {
+        downloadLink.href = "#";
+        downloadLink.innerText = "Système d'exploitation non pris en charge";
+        downloadLink.style.backgroundColor = "#dc3545";
+        downloadLink.style.cursor = "not-allowed";
+    }
+    // Message de confirmation lorsque le téléchargement commence
+    downloadLink.addEventListener('click', function(event) {
+        if (downloadLink.href !== "#") {
+            alert("Le téléchargement de SuperGame a commencé !");
+        }
+    });
+</script>
+<!--Pour les images deffillantes-->
+<script>
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slideshow-container img');
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.remove('active');
+            if (i === index) {
+                slide.classList.add('active');
+            }
+        });
+    }
+
+    function moveSlide(direction) {
+        slideIndex = (slideIndex + direction + totalSlides) % totalSlides;
+        showSlide(slideIndex);
+    }
+
+    // Initial display
+    showSlide(slideIndex);
+
+    // Optionnel : défilement automatique toutes les 2 secondes
+    setInterval(() => moveSlide(1), 2000);
+
+</script>
+
+</body>
+
+
+<footer>
+    <p>&copy; 2024 SuperGame. Tous droits réservés. | <a href="#">Conditions d'utilisation</a> | <a href="#">Support technique</a></p>
+</footer>
+</html>
+
